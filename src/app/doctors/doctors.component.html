@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-3">
+        <select #s (change)="changeParams(s.value)">
+            <option value="">All</option>
+            <option *ngFor="let spec of specialties" value="{{spec}}">{{spec}}</option>
+        </select>
+    </div>
+
+    <div class="col-6">
+        <form>
+            <div class="form-row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="First name" name="name" [(ngModel)]="parameters.filter.name" (change)="updateDoctors()">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Last name" name="lastName" [(ngModel)]="parameters.filter.lastName" (change)="updateDoctors()">
+              </div>
+            </div>
+          </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-8">
+        <app-doctorslist [doctors]="doctors" (newItemEvent)="getSchedule($event)"></app-doctorslist>
+    </div>
+    <div class="col-4">
+        <app-doctordetails *ngIf="isClicked" [doctor]="oneDoctor" [flag]="true"></app-doctordetails>
+    </div>
+</div>
